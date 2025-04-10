@@ -1,10 +1,9 @@
 from flask import render_template, redirect, url_for, flash, Blueprint
 from flask_login import login_user, current_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from forms import RegisterForm, LoginForm, ContactForm
-from model import User
-from extensions import db
-from utils import send_email
+from app.auth.forms import RegisterForm, LoginForm
+from app.auth.models import User
+from app.extensions import db
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -70,16 +69,4 @@ def logout():
     return redirect(url_for('blog.get_all_posts'))
 
 
-@auth_bp.route("/about")
-def about():
-    return render_template("about.html", current_user=current_user)
 
-
-@auth_bp.route("/contact", methods=["GET", "POST"])
-def contact():
-    form = ContactForm()
-    if form.validate_on_submit():
-        send_email(form.name.data, form.email.data, form.message.data)
-        return render_template("contact.html", msg_sent=True)
-
-    return render_template("contact.html", current_user=current_user, form=form)

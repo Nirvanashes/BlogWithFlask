@@ -1,9 +1,9 @@
 from flask import Flask
 from config import Config
-from extensions import db, login_manager, init_extensions
-from model import User
-from auth import auth_bp
-from blog import blog_bp
+from app.extensions import db, login_manager, init_extensions
+from app.auth.models import User
+from app.auth.routes import auth_bp
+from app.blog.routes import blog_bp
 
 
 def create_app(config_class=Config):
