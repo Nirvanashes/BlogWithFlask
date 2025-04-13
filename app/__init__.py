@@ -2,6 +2,7 @@ from flask import Flask
 from config import Config
 from app.extensions import db, login_manager, init_extensions
 from app.auth.models import User
+from app.blog.models import BlogPost,Comment
 from app.auth.routes import auth_bp
 from app.blog.routes import blog_bp
 
