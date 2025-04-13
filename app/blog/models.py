@@ -1,4 +1,3 @@
-from flask_login import UserMixin
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from sqlalchemy import Integer, String, Text
 from app.extensions import db
